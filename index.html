@@ -8,19 +8,19 @@
     <style>
       * {
         font-family: tahoma, Helvetica, sans-serif; /* tipo de letra de todo el ticket; */
-        font-size: 2mm !important;
+        font-size: 3mm !important;
         line-height: 1 !important;
       }
 
       .info-tienda {
         margin-top: 0;
-        margin-bottom: 1mm;
+        margin-bottom:0mm;
         line-height: 4mm;
       }
 
       .nro_boleta {
         margin: 0;
-        font-size: 4mm !important;
+        font-size: 10mm !important;
       }
 
       .fecha_recepcion {
@@ -32,9 +32,9 @@
       }
 
       .nombre-cliente {
-        margin: 2mm;
+        margin: 0mm;
         margin-top: 0;
-        font-size: 3mm !important;
+        font-size: mm !important;
       }
 
       #thermal-pos {
@@ -48,10 +48,30 @@
       #thermal-pos h2 {
         font-size: 2mm;
         line-height: 13px;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
       }
       .label {
         margin: 0;
       }
+         .ticket {
+    text-align: center;
+   Padding-top: 0; /* Elimina el margen superior */
+   Padding-bottom: 0; /* Elimina el margen inferior */
+   Padding-right: 0;
+   Padding-left: 0;
+    
+
+    }
+       .fecharecep {
+    text-align: center;
+   Padding-top: 0; /* Elimina el margen superior */
+   Padding-bottom: 0; /* Elimina el margen inferior */
+   Padding-right: 0;
+   Padding-left: 0;
+    
+
+    }
+
       #thermal-pos .label {
         text-align: center;
         font-size: 2mm;
@@ -84,6 +104,7 @@
         font-size: 2.1mm;
         text-align: start;
         word-wrap: break-word;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
       }
 
       #thermal-pos .cantidad {
@@ -129,9 +150,9 @@
 
       .saldo-text {
         margin: 0;
-        font-size: 3mm;
+        font-size: 15mm;
         text-align: center;
-      }
+      } 
 
       .table-footer {
         vertical-align: bottom;
@@ -146,7 +167,7 @@
       }
 
       .estado-deuda {
-        font-size: 3.5mm !important;
+        font-size: 8mm !important;
       }
 
       .info {
@@ -178,6 +199,7 @@
       .policy .policy-title {
         text-align: center;
         margin: 0;
+        font-weight: normal; /* Agrega esta línea para desactivar la negrita */
         
       }
       
@@ -224,11 +246,11 @@ img#impresoraButton {
       
     </style>
  </head>
+ <body onload="printTicket()">
 
-      <!-- <body onload="window.print()" onfocus="window.close()" -->
-      
-        <!--<button id="whatsappButton">ENVIAR WHATSAPP</button>
-       <!--<button id="Imprimirr">Print</button>-->
+ <!-- Codigo para que se imprima en automatico cuando se abra el ticket -->
+
+
 
 
     <script>
@@ -247,7 +269,17 @@ img#impresoraButton {
         var total_a_pagar = params.has('total_a_pagar') ? params.get('total_a_pagar') : " ";
         var descuento = params.has('descuento') ? params.get('descuento') : " ";
         var a_cuenta = params.has('a_cuenta') ? params.get('a_cuenta') : " ";
+        var desc_por_prenda = params.has('desc_por_prenda') ? params.get('desc_por_prenda') : " ";
+        var pagado_con = params.has('pagado_con') ? params.get('pagado_con') : "--";
+        var a_cuenta_dos = params.has('a_cuenta_dos') ? params.get('a_cuenta_dos') : " ";
+        var pagado_con_dos = params.has('pagado_con_dos') ? params.get('pagado_con_dos') : "--";
+        var porcent_desc = params.has('porcent_desc') ? params.get('porcent_desc') : " ";
+        var porcent_desc_plata = params.has('porcent_desc_plata') ? params.get('porcent_desc_plata') : " ";
+        var total_por_pagar = params.has('total_por_pagar') ? params.get('total_por_pagar') : " ";
         var estado = params.has('estado') ? params.get('estado') : "--";
+        
+        
+        
 
         //Recibe los datos de los servicios (separados por comas)
         var cantidades = params.has('cantidades') ? params.get('cantidades') : "";
@@ -286,15 +318,17 @@ img#impresoraButton {
      <div class="button-container">
     <!-- Contenedor de botones -->
          <div class="button-box">
+
+  
   <!-- Botón de WhatsApp con ícono -->
   <a href="#" id="impresoraButton">
-   <img src="https://drive.google.com/uc?export=download&id=1TV06j4ze6Nd6rcDfBawbo-cqZtPzgOlo" class="ImganelLogo" width= "50%" alt="Impresora Icon">
+  <img class="boton" src="Print.png" class="ImganelLogo" width= "60%" id "foto">
   </a>
   
   <!-- Botón existente de WhatsApp -->
   
   <a href="#" id="whatsappButton">
-   <img src="https://drive.google.com/uc?export=download&id=1sxoCm2AAIcw3dGT3T6A2ATSL8RLFjtRq" class="ImganelLogo" width= "50%" alt="WhatsApp Icon">
+  <img class="boton" src="wsp.png" class="ImganelLogo" width= "60%" id "foto">
   </a>
     </div>
   </div>
@@ -302,57 +336,55 @@ img#impresoraButton {
     
      <div id="thermal-pos">
         
+        <div id="thermal-pos">
+        
         <div class="label">
-             <img src="https://drive.google.com/uc?export=download&id=1a0iqnzorS90sp8WQ7asIFpxXHjimeMwj" class="ImganelLogo" width= "40%" id "foto"
+             <img class="boton" src="Dental.png" class="ImganelLogo" width= "60%" id "foto">
             <br/>
             <p class="info-tienda">
-                Jr. XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                mi dirección -Lima
                 <br>
-                Horario de atención:
+                Telefono: 999888999
                 <br>
-                LUNES A SABADO XXXXXXXXXXXXXXXX
+                Horario de lunes a sábado de 9:00 am a 7:00 pm 
+        
                 <br>
-                DOMINGO: XXXXXXXXXXXXXXX
-                <br>
-                
-                Garantia y puntualidad
-                <br>
-            </p>
+              
+          
         </div>
         
         
-        <div class="label">
-            <b>TICKET:</b>
+        <div class="ticket">
+            <b>TICKET:<br>
             <h1 class="nro_boleta" id="nro_boleta_id" ></h1>
-        </div>
-        <div class="label">
+         </div>
+        <div class="fecharecep">
             <p class="fecha">
-                FECHA DE RECEPCION:
-                <br>
+                
+                <b>FECHA RECEPCION:<br>
                 <b id="fecha"></b>
-            </p>
-            <b>CLIENTE:</b>
-            <h1 class="nombre-cliente" id="mesa">
-            </h1>
+            <br>
+            <b>CLIENTE:<br>
+            <b id="nombre_client"></b>
+          
         </div>
 
-        <!-- <div class="line">***********************************************</div> -->
-        
         <div class="label">
             <p class="fecha_entrega">
-                <b>
-                    FECHA DE ENTREGA: <br>
-                    <span id="hora"></span>
+                <b> FECHA ENTREGA: <br>
+                    <span id="fecha_entrega"></span>
                 </b>
             </p>
         </div>
+      
+   
    
         <table class="table">
             <tbody id="tablaBody">
                 <tr class="table-header">
     <th><h2>Cant</h2></th>
     <th><h2>Descripcion</h2></th>
-     <th><h2>Detalle</h2></th>
+
     <th><h2>Precio</h2></th>
     <th><h2>Subtotal</h2></th> <!-- Nueva columna para Subtotal -->
                  </tr>
@@ -377,7 +409,7 @@ img#impresoraButton {
         
        <td class="item" style="text-align: right;">${row.cantidad}</td>
         <td class="item" style="text-align: right;">${row.descripcion}</td>
-        <td class="item" style="text-align: right;">${row.detalle}</td>
+
         <td class="item" style="text-align: right;">${row.precio_unit}</td> <!-- Alinea a la derecha -->
         <td class="item" style="text-align: right;">${subtotal.toFixed(2)}</td> <!-- Alinea a la derecha -->
     `;
@@ -406,7 +438,7 @@ img#impresoraButton {
             
             
             // Mensaje a enviar junto con el enlace
-            var message = 'Hola!!somos de la lavandería XXXXXXXXXX , somos una lavandería que cuida el medio ambiente ♻️♻️♻️♻️♻️, por ello adjuntamos su ticket de atención  virtual. Click en el link para ver el ticket 👇🏻👇🏻👇🏻 ' + currentURL;
+            var message = 'Hola!! somos de la lavandería, somos una lavandería que cuida el medio ambiente ♻️♻️♻️♻️♻️, por ello adjuntamos su ticket de atención  virtual. Click en el link para ver el ticket 👇🏻👇🏻👇🏻 ' + currentURL;
             
                // Código de país fijo
             //var countryCode = '+51';
@@ -446,64 +478,86 @@ document.getElementById('impresoraButton').addEventListener('click', printTicket
     
 
                 <tr class="table-footer top-line">
-                    <td class="" colspan="3"><h2>Subtotal:</h2></td>
+                    <td class="" colspan="3">Total Venta:</td>
                     <td colspan="3"><h2 id="total"></h2></td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="3"><h2>Descuento:</h2></td>
+                    <td colspan="3"><h2>Desc x prenda:</h2></td>
+                    <td colspan="3"><h2 id="desc_por_prenda"></h2></td>
+                    
+                </tr>
+                 <tr class="table-footer">
+                    <td colspan="3"><h2>Desc ticket:</h2></td>
                     <td colspan="3"><h2 id="subtotal_desc"></h2></td>
                     
                 </tr>
                 
                 <tr class="table-footer">
-                    <td colspan="3"><h2>A cuenta:</h2></td>
+                    <td colspan="3"><h2>A cuenta :</h2></td>
                     <td colspan="3"><h2 id="a_cuenta"></h2></td>
                     
                 </tr>
+ <tr class="table-footer">
+                    <td colspan="3"><h2>A cuenta 2:</h2></td>
+                    <td colspan="3"><h2 id="a_cuenta_dos"></h2></td>  
+             
+                </tr>
                 
                 <tr class="table-footer">
-                    <td colspan="3"><h2>Total a pagar:</h2></td>
+                    <td colspan="3"><h2>SubTotal:</h2></td>
                     <td colspan="3"><h2 id="total_a_pagar"></h2></td>
                 </tr>
                 
+           
                 
+                <tr class="table-footer">
+                    <td colspan="3"><h2 id="porcent_desc"></h2></td>
+                    <td colspan="3"><h2 id="porcent_desc_plata"></h2></td>
+
+                </tr>
+                
+                 <tr class="table-footer">
+                    <td colspan="3"><h2>Total por pagar:</h2></td>
+                    <td colspan="3"><h2 id="total_por_pagar"></h2></td>
+                </tr>
                 
                 
             </tbody>
         </table>
         <br/>
-        <br/>
+
         <p class="saldo-text">
             <b><span class="estado-deuda" id="estado"></span></b>
         </p>
         <br/>
         <div class="policy">
             <p class="policy-title">
-                <b>La sola aceptación del presente documento implica la
-aceptación de las condiciones siguientes::</b>
-            </p>
-        
-            <p class="m-0">
-
-               
+                <b>
+                
+                    Gracias por confiar en nosotros</b>
             </p>
     
-        <div class="policy">
-            <p class="policy-title">
-                <b>Gracias por su Preferencial!!</b>
-            </p>
+        
+
     </div>
     <script>
         var nroBoletaElement = document.getElementById("nro_boleta_id").textContent = nro_boleta;
         var fechaElement = document.getElementById("fecha").textContent = fecha;
-        var nombre_clientElement = document.getElementById("mesa").textContent = nombre_cliente;
-        var fecha_entregaElement = document.getElementById("hora").textContent = fecha_entrega;
+        var nombre_clientElement = document.getElementById("nombre_client").textContent = nombre_cliente;
+        var fecha_entregaElement = document.getElementById("fecha_entrega").textContent = fecha_entrega;
         
 
         var totalElement = document.getElementById("total").textContent = total;
         var subtotal_descElement = document.getElementById("subtotal_desc").textContent = subtotal_desc;
+        var desc_por_prendaElement = document.getElementById("desc_por_prenda").textContent = desc_por_prenda;
         var total_a_pagarElement = document.getElementById("total_a_pagar").textContent = total_a_pagar;
         var a_cuentaElement = document.getElementById("a_cuenta").textContent = a_cuenta;
+        var a_cuenta_dosElement = document.getElementById("a_cuenta_dos").textContent = a_cuenta_dos;
+        
+        var porcent_descElement = document.getElementById("porcent_desc").textContent = porcent_desc;
+        var porcent_desc_plataElement = document.getElementById("porcent_desc_plata").textContent = porcent_desc_plata;
+        var total_por_pagarElement = document.getElementById("total_por_pagar").textContent = total_por_pagar;
+        
         var estadoElement = document.getElementById("estado").textContent = estado;
       </script>   
 
@@ -521,6 +575,17 @@ if (currentURL.indexOf('sharelink=1') !== -1) {
     impresoraButton.style.display = 'none';
 }
 </script>
+
+<script>
+    function pprintTicket() {
+      // Simula hacer clic en el botón de impresión
+      document.getElementById("printButton").click();
+      // Imprimir automáticamente
+      window.print();
+      // Cerrar la ventana después de imprimir
+      window.close();
+    }
+  </script>
 
 </body>
 </html>
